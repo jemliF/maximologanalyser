@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import jfxtras.scene.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartech.loganalyser.src.view.MainController">
+   <children>
+      <ScrollPane prefHeight="800.0" prefViewportHeight="800.0" prefViewportWidth="1292.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <BorderPane prefHeight="800.0" prefWidth="1340.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefWidth="280.0" style="-fx-background-color: #F3F5F9;" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox layoutX="1.0" layoutY="1.0" prefHeight="745.0" prefWidth="280.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <ProgressBar fx:id="progressBar" prefHeight="25.0" prefWidth="280.0" progress="0.0" />
+                              <TreeView fx:id="logDirectory" onMousePressed="#onlogFileCliqued" prefHeight="560.0" prefWidth="280.0">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <contextMenu>
+                                    <ContextMenu>
+                                      <items>
+                                        <MenuItem fx:id="searchMenuItem" mnemonicParsing="false" onAction="#openSearchTab" text="Search" />
+                                          <MenuItem fx:id="refreshSelectedFileMenuItem" mnemonicParsing="false" onAction="#refreshSelectedFile" text="Refresh file" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </TreeView>
+                              <Button mnemonicParsing="false" onAction="#browseLogLocationManuel" prefWidth="280.0" text="Browse IBM log's location">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#0071c1" glyphName="MAP_MARKER" size="20" />
+                                 </graphic>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#browseDatabasePropertiesJar" prefWidth="280.0" text="Browse database configuration jar">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#0071c1" glyphName="DATABASE" size="20" />
+                                 </graphic>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #F3F5F9; -fx-border-color: #F0F0F0; -fx-border-width: 2px;" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox layoutX="12.0" layoutY="12.0" prefHeight="800.0" prefWidth="1050.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <TabPane fx:id="logAnalyserTabPane" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="580.0" prefWidth="1000.0" style="-fx-background-color: #FFFFFF;" tabClosingPolicy="UNAVAILABLE" tabMinHeight="28.0" tabMinWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <tabs>
+                                          <Tab text="File content">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox prefHeight="560.0" prefWidth="1026.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #E4E4E5;">
+                                                               <children>
+                                                                  <HBox prefHeight="50.0" prefWidth="1000.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Label prefHeight="25.0" prefWidth="80.0" text="Search">
+                                                                           <graphic>
+                                                                              <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                           </graphic>
+                                                                           <HBox.margin>
+                                                                              <Insets left="10.0" top="10.0" />
+                                                                           </HBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="searchInSelectedFileContentTextField" prefWidth="200.0">
+                                                                           <effect>
+                                                                              <DropShadow />
+                                                                           </effect>
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                        </TextField>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets left="20.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                               <effect>
+                                                                  <DropShadow />
+                                                               </effect>
+                                                            </AnchorPane>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="500.0">
+                                                               <children>
+                                                                  <TextArea fx:id="fileContentTextArea" minHeight="-Infinity" prefHeight="480.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <effect>
+                                                                        <DropShadow />
+                                                                     </effect>
+                                                                  </TextArea>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" />
+                                                               </padding>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#0071c1" glyphName="FILE" size="20" />
+                                             </graphic>
+                                          </Tab>
+                                          <Tab text="Exceptions">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox prefHeight="641.0" prefWidth="1026.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #E4E4E5;">
+                                                               <children>
+                                                                  <HBox prefHeight="40.0" prefWidth="1000.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Label prefHeight="25.0" prefWidth="80.0" text="Search">
+                                                                           <graphic>
+                                                                              <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                           </graphic>
+                                                                           <HBox.margin>
+                                                                              <Insets top="10.0" />
+                                                                           </HBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="searchInExceptionsTextField" prefWidth="200.0">
+                                                                           <effect>
+                                                                              <DropShadow />
+                                                                           </effect>
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                        </TextField>
+                                                                        <CheckBox fx:id="saveExceptionsInCSVCheckBox" mnemonicParsing="false" prefHeight="25.0" text="Save to CSV file">
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                        </CheckBox>
+                                                                        <Button mnemonicParsing="false" onAction="#searchInExceptions" prefWidth="90.0" text="Search">
+                                                                           <cursor>
+                                                                              <Cursor fx:constant="HAND" />
+                                                                           </cursor>
+                                                                           <effect>
+                                                                              <DropShadow />
+                                                                           </effect>
+                                                                           <graphic>
+                                                                              <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                           </graphic>
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                        </Button>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets left="20.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                               <effect>
+                                                                  <DropShadow />
+                                                               </effect>
+                                                            </AnchorPane>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="500.0">
+                                                               <children>
+                                                                  <TableView fx:id="exceptionsTableView" minHeight="-Infinity" prefHeight="480.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <effect>
+                                                                        <DropShadow />
+                                                                     </effect>
+                                                                  </TableView>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" />
+                                                               </padding>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#0071c1" glyphName="WARNING" size="20" />
+                                             </graphic>
+                                          </Tab>
+                                          <Tab text="Queries">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox prefHeight="641.0" prefWidth="1026.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #E4E4E5;">
+                                                               <children>
+                                                                  <VBox layoutY="-1.0">
+                                                                     <children>
+                                                                        <HBox fx:id="box" prefHeight="40.0" prefWidth="1000.0" spacing="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <children>
+                                                                              <Label prefHeight="25.0" prefWidth="80.0" text="Search">
+                                                                                 <graphic>
+                                                                                    <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                                 </graphic>
+                                                                                 <HBox.margin>
+                                                                                    <Insets top="10.0" />
+                                                                                 </HBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="searchInQueriesTextField" prefWidth="200.0">
+                                                                                 <effect>
+                                                                                    <DropShadow />
+                                                                                 </effect>
+                                                                                 <HBox.margin>
+                                                                                    <Insets top="10.0" />
+                                                                                 </HBox.margin>
+                                                                              </TextField>
+                                                                           </children>
+                                                                           <padding>
+                                                                              <Insets left="20.0" />
+                                                                           </padding>
+                                                                        </HBox>
+                                                                        <HBox prefHeight="40.0" prefWidth="200.0" spacing="10.0">
+                                                                           <children>
+                                                                              <HBox minHeight="-Infinity" prefHeight="40.0" prefWidth="700.0" spacing="10.0">
+                                                                                 <children>
+                                                                                    <Label prefWidth="150.0" text="Execution time between">
+                                                                                       <HBox.margin>
+                                                                                          <Insets top="10.0" />
+                                                                                       </HBox.margin>
+                                                                                       <graphic>
+                                                                                          <FontAwesomeIconView fill="#0071c1" glyphName="DASHBOARD" size="15" />
+                                                                                       </graphic>
+                                                                                    </Label>
+                                                                                    <AnchorPane fx:id="executionTimeAnchorPane" prefHeight="40.0" prefWidth="530.0">
+                                                                                       <children>
+                                                                                          <HBox layoutX="21.0" layoutY="14.0" prefHeight="40.0" prefWidth="530.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="executionTime1TextField" layoutX="21.0" layoutY="14.0" prefWidth="200.0">
+                                                                                                   <effect>
+                                                                                                      <DropShadow />
+                                                                                                   </effect>
+                                                                                                </TextField>
+                                                                                                <Label text="And" />
+                                                                                                <TextField fx:id="executionTime2TextField" prefWidth="200.0">
+                                                                                                   <effect>
+                                                                                                      <DropShadow />
+                                                                                                   </effect>
+                                                                                                </TextField>
+                                                                                             </children>
+                                                                                             <padding>
+                                                                                                <Insets top="5.0" />
+                                                                                             </padding>
+                                                                                          </HBox>
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox spacing="10.0">
+                                                                                 <children>
+                                                                                    <CheckBox fx:id="saveQueriesInCSVCheckBox" mnemonicParsing="false" prefHeight="25.0" text="Save to CSV file">
+                                                                                       <HBox.margin>
+                                                                                          <Insets />
+                                                                                       </HBox.margin>
+                                                                                    </CheckBox>
+                                                                                    <Button mnemonicParsing="false" onAction="#searchInQueries" prefWidth="90.0" text="Search">
+                                                                                       <cursor>
+                                                                                          <Cursor fx:constant="HAND" />
+                                                                                       </cursor>
+                                                                                       <effect>
+                                                                                          <DropShadow />
+                                                                                       </effect>
+                                                                                       <graphic>
+                                                                                          <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                                       </graphic>
+                                                                                       <HBox.margin>
+                                                                                          <Insets />
+                                                                                       </HBox.margin>
+                                                                                    </Button>
+                                                                                 </children>
+                                                                                 <HBox.margin>
+                                                                                    <Insets />
+                                                                                 </HBox.margin>
+                                                                                 <padding>
+                                                                                    <Insets top="10.0" />
+                                                                                 </padding>
+                                                                              </HBox>
+                                                                           </children>
+                                                                           <padding>
+                                                                              <Insets left="20.0" />
+                                                                           </padding>
+                                                                        </HBox>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                               <effect>
+                                                                  <DropShadow />
+                                                               </effect>
+                                                            </AnchorPane>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="460.0">
+                                                               <children>
+                                                                  <TableView fx:id="queriesTableView" layoutY="5.0" minHeight="-Infinity" prefHeight="460.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <effect>
+                                                                        <DropShadow />
+                                                                     </effect>
+                                                                  </TableView>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" />
+                                                               </padding>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#0071c1" glyphName="SPINNER" size="20" />
+                                             </graphic>
+                                          </Tab>
+                                          <Tab fx:id="queryTesterTab" text="Query tester">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox prefHeight="480.0" prefWidth="1026.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <AnchorPane prefHeight="300.0">
+                                                               <children>
+                                                                  <HTMLEditor fx:id="selectedQueryHtmlEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="254.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                               </children>
+                                                               <effect>
+                                                                  <DropShadow />
+                                                               </effect>
+                                                            </AnchorPane>
+                                                            <HBox spacing="50.0">
+                                                               <children>
+                                                                  <Button mnemonicParsing="false" onAction="#testSelectedQuery" prefHeight="20.0" prefWidth="150.0" text="Test ">
+                                                                     <VBox.margin>
+                                                                        <Insets left="400.0" right="400.0" />
+                                                                     </VBox.margin>
+                                                                     <graphic>
+                                                                        <FontAwesomeIconView fill="#0071c1" glyphName="FORWARD" size="20" />
+                                                                     </graphic>
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="HAND" />
+                                                                     </cursor>
+                                                                     <effect>
+                                                                        <DropShadow />
+                                                                     </effect>
+                                                                  </Button>
+                                                                  <Label fx:id="executionTimeLabel" prefHeight="25.0" prefWidth="300.0" text="execution time: ">
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets left="300.0" right="300.0" />
+                                                               </padding>
+                                                            </HBox>
+                                                            <AnchorPane prefHeight="300.0" prefWidth="1000.0">
+                                                               <children>
+                                                                  <ScrollPane fx:id="queryResultScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="239.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <content>
+                                                                        <AnchorPane fx:id="queryResultAnchorPane" prefHeight="200.0" prefWidth="1000.0" />
+                                                                     </content>
+                                                                  </ScrollPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" />
+                                                   </padding>
+                                                </AnchorPane>
+                                            </content>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#0071c1" glyphName="TERMINAL" size="20" />
+                                             </graphic>
+                                          </Tab>
+                                          <Tab fx:id="searchTab" text="Search">
+                                            <content>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox prefHeight="515.0" prefWidth="1026.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <AnchorPane minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #E4E4E5;">
+                                                               <children>
+                                                                  <HBox prefHeight="40.0" prefWidth="1026.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <Label prefHeight="25.0" prefWidth="80.0" text="Search">
+                                                                           <graphic>
+                                                                              <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                           </graphic>
+                                                                           <HBox.margin>
+                                                                              <Insets top="10.0" />
+                                                                           </HBox.margin>
+                                                                        </Label>
+                                                                        <TextField fx:id="searchInFilesTextField" prefWidth="200.0">
+                                                                           <effect>
+                                                                              <DropShadow />
+                                                                           </effect>
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                        </TextField>
+                                                                        <CheckBox fx:id="searchInFilesSaveCSVCheckBox" mnemonicParsing="false" prefHeight="25.0" text="Save to CSV file">
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                        </CheckBox>
+                                                                        <Button mnemonicParsing="false" onAction="#searchInSelectedLocation" prefWidth="90.0" text="Search">
+                                                                           <HBox.margin>
+                                                                              <Insets top="5.0" />
+                                                                           </HBox.margin>
+                                                                           <graphic>
+                                                                              <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="15" />
+                                                                           </graphic>
+                                                                           <effect>
+                                                                              <DropShadow />
+                                                                           </effect>
+                                                                           <cursor>
+                                                                              <Cursor fx:constant="HAND" />
+                                                                           </cursor>
+                                                                        </Button>
+                                                                     </children>
+                                                                     <padding>
+                                                                        <Insets left="20.0" />
+                                                                     </padding>
+                                                                  </HBox>
+                                                               </children>
+                                                               <effect>
+                                                                  <DropShadow />
+                                                               </effect>
+                                                            </AnchorPane>
+                                                            <AnchorPane prefHeight="500.0">
+                                                               <children>
+                                                                  <TableView fx:id="searchInFilesTableView" layoutX="365.0" layoutY="72.0" prefHeight="480.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                               </children>
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" />
+                                                               </VBox.margin>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                             <graphic>
+                                                <FontAwesomeIconView fill="#0071c1" glyphName="SEARCH" size="20" />
+                                             </graphic>
+                                          </Tab>
+                                       </tabs>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </TabPane>
+                                    <AnchorPane prefHeight="50.0" prefWidth="200.0">
+                                       <children>
+                                          <Pagination fx:id="selectedFileContentPagination" layoutY="50.0" maxHeight="-Infinity" minHeight="-Infinity" pageCount="10" prefHeight="50.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <effect>
+                                                <DropShadow />
+                                             </effect>
+                                          </Pagination>
+                                       </children>
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <AnchorPane>
+                                 <children>
+                                    <TaskProgressView fx:id="taskProgressView" layoutX="9.0" layoutY="9.0" minHeight="-Infinity" prefHeight="50.0" prefWidth="1026.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                       <VBox.margin>
+                                          
+                                       </VBox.margin>
+                                    </TaskProgressView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </AnchorPane>
+               </center>
+               <top>
+                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="200.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../img/logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" />
+                     </BorderPane.margin>
+                  </AnchorPane>
+               </top>
+               <bottom>
+                  <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
